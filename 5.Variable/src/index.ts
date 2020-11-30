@@ -89,3 +89,12 @@ create({ prop: 0 });
 // create(null); // Error
 // create(1); // Error
 // create(undefined); // Error
+
+// Type Assetions
+// 1. angle-bracket 문법
+let someValue1: any = "this is a string";
+let str1Length: number = (<string>someValue1).length;
+
+// 2. as 문법
+let someValue2: any = "this is a string";
+let str2Length: number = (someValue2 as string).length;
