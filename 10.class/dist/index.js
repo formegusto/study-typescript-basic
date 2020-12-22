@@ -65,25 +65,49 @@ let rhino = new Rhino();
 // let employee = new Employee("Bob");
 animal = rhino;
 // animal = employee; // Error!
-class Person {
-    constructor(name) { this.name = name; }
-}
-class Employee extends Person {
-    constructor(name, department) {
-        super(name);
-        this.department = department;
-    }
-    geElevatorPitch() {
-        return `Hello, my name is ${this.name} and I work in ${this.department}`;
-    }
-}
-let howard = new Employee("Howard", "Sales");
+// class Person {
+//     protected name: string;
+//     protected constructor(name: string) { this.name = name; }
+// }
+// class Employee extends Person {
+//     private department: string;
+//     constructor(name: string, department: string) {
+//         super(name);
+//         this.department = department;
+//     }
+//     public geElevatorPitch() {
+//         return `Hello, my name is ${this.name} and I work in ${this.department}`;
+//     }
+// }
+// let howard = new Employee("Howard", "Sales");
 // let john = new Person("John");
-class Octopus {
-    constructor(theName) {
-        this.numberOfLegs = 8;
-        this.name = theName;
+// class Octopus {
+//     readonly name: string;
+//     readonly numberOfLegs: number = 8;
+//     constructor (theName: string) {
+//         this.name = theName;
+//     }
+// }
+// let dad = new Octopus("Man with the 8 strong legs");
+// dad.name = "Man with the 3-piece suit"; // Error!
+// 4. 접근자
+const fullNameMaxLength = 10;
+class Employee {
+    constructor() {
+        this._fullName = "th";
+    }
+    get fullName() {
+        return this._fullName;
+    }
+    set fullName(newName) {
+        if (newName && newName.length > fullNameMaxLength) {
+            throw new Error("fullName has a max length of " + fullNameMaxLength);
+        }
+        this._fullName = newName;
     }
 }
-let dad = new Octopus("Man with the 8 strong legs");
-// dad.name = "Man with the 3-piece suit"; // Error!
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    console.log(employee.fullName);
+}

@@ -87,33 +87,58 @@ let rhino = new Rhino();
 animal = rhino;
 // animal = employee; // Error!
 
-class Person {
-    protected name: string;
-    protected constructor(name: string) { this.name = name; }
-}
+// class Person {
+//     protected name: string;
+//     protected constructor(name: string) { this.name = name; }
+// }
 
-class Employee extends Person {
-    private department: string;
+// class Employee extends Person {
+//     private department: string;
 
-    constructor(name: string, department: string) {
-        super(name);
-        this.department = department;
-    }
+//     constructor(name: string, department: string) {
+//         super(name);
+//         this.department = department;
+//     }
 
-    public geElevatorPitch() {
-        return `Hello, my name is ${this.name} and I work in ${this.department}`;
-    }
-}
+//     public geElevatorPitch() {
+//         return `Hello, my name is ${this.name} and I work in ${this.department}`;
+//     }
+// }
 
-let howard = new Employee("Howard", "Sales");
+// let howard = new Employee("Howard", "Sales");
 // let john = new Person("John");
 
-class Octopus {
-    readonly name: string;
-    readonly numberOfLegs: number = 8;
-    constructor (theName: string) {
-        this.name = theName;
+// class Octopus {
+//     readonly name: string;
+//     readonly numberOfLegs: number = 8;
+//     constructor (theName: string) {
+//         this.name = theName;
+//     }
+// }
+// let dad = new Octopus("Man with the 8 strong legs");
+// dad.name = "Man with the 3-piece suit"; // Error!
+
+// 4. 접근자
+const fullNameMaxLength = 10;
+
+class Employee {
+    private _fullName: string = "th";
+
+
+    get fullName(): string{
+        return this._fullName
+    }
+
+    set fullName(newName: string) {
+        if(newName && newName.length > fullNameMaxLength) {
+            throw new Error("fullName has a max length of " + fullNameMaxLength);
+        }
+
+        this._fullName = newName;
     }
 }
-let dad = new Octopus("Man with the 8 strong legs");
-// dad.name = "Man with the 3-piece suit"; // Error!
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    console.log(employee.fullName);
+}
